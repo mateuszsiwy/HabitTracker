@@ -41,6 +41,7 @@ class Program
             switch (choice)
             {
                 case "0":
+                    Environment.Exit(0);
                     break;
                 case "1":
                     dbMethods.ViewRecords(connectionString);
