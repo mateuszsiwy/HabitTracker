@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HabitTracker": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\matro\\C#\\Console Apps\\HabitTracker\\HabitTracker"
+    }
+  }
+}
