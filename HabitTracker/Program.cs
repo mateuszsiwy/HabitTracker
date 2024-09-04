@@ -1,13 +1,15 @@
 ﻿using System;
 using Microsoft.Data.Sqlite;
 using System.IO;
-
+using Microsoft.VisualBasic.FileIO;
+using HabitTracker;
 class Program
 {
     static void Main(string[] args)
     {
 
-        using (var connection = new SqliteConnection($"Data Source=habit-tracker.db"))
+        string connectionString = $"Data Source=habit-tracker.db";
+        using (var connection = new SqliteConnection(connectionString))
         {
             connection.Open();
             var command = connection.CreateCommand();
@@ -22,7 +24,10 @@ class Program
         }
 
 
-        Console.WriteLine("MAIN MENU\n\n" +
+
+        while (true)
+        {
+            Console.WriteLine("MAIN MENU\n\n" +
             "What would you like to do?\n\n" +
             "Type 0 to Close Application\n" +
             "Type 1 to View All Records\n" +
@@ -31,6 +36,28 @@ class Program
             "Type 4 to Update Record\n" +
             "------------------------------------");
 
-        string? choice = Console.ReadLine();
+            string? choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "0":
+                    break;
+                case "1":
+                    dbMethods.ViewRecords(connectionString);
+                    break;
+                case "2":
+                    dbMethods.InsertRecord(connectionString);
+                    break;
+                case "3":
+                    dbMethods.DeleteRecord(connectionString);
+                    break;
+                case "4":
+                    dbMethods.UpdateRecord(connectionString);
+                    break;
+                default:
+                    Console.WriteLine("Pick a valid option!");
+                    break;
+            }
+        }
     }
 }
